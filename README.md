@@ -73,7 +73,7 @@ All of this is on the printable sheet.
 - `plugin/` — the setup plugin (`bootstrap.js`, `accessible-setup.js`, `style.css`, `manifest.json`, `updates.json`) plus the built `.xpi`. Applies prefs once, creates collections, tags, and the saved search, and registers the high-contrast stylesheet. Zotero 10 rejects plugin manifests without `applications.zotero.strict_max_version`, so it is set.
 - `files/userChrome.css` — the same high-contrast overrides as a manual profile stylesheet; an alternative to the plugin. Install steps in the file header.
 - `files/keyboard-shortcuts.html` — printable 18 pt cheat sheet: keys plus the five most common task sequences.
-- `site/` — the instructions webpage served by GitHub Pages (includes a copy of the cheat sheet).
+- `docs/` — the instructions webpage served by GitHub Pages from `docs/` (includes a copy of the cheat sheet).
 
 ## Testing
 
