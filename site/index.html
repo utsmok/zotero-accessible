@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zotero Accessible Setup</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.55;
+    color: #000;
+    background: #fff;
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.2rem 4rem;
+  }
+  h1 { font-size: 2rem; margin: 0 0 0.4rem; }
+  h2 { font-size: 1.4rem; margin-top: 2.2rem; border-bottom: 3px solid #000; padding-bottom: 0.15rem; }
+  a { color: #000; }
+  .button {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    margin: 0.4rem 0;
+  }
+  .button:focus { outline: 4px solid #ffbf40; }
+  ol li, ul li { margin-bottom: 0.45rem; }
+  kbd {
+    font-family: inherit;
+    font-weight: bold;
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: 0 0.3em;
+    white-space: nowrap;
+  }
+  .step { font-weight: bold; }
+  .note { border: 2px solid #000; padding: 0.8rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<h1>Zotero Accessible Setup</h1>
+<p>One download sets up Zotero on a new computer. You install it once, restart Zotero, and everything below is done for you:</p>
+<ul>
+  <li>Larger text everywhere</li>
+  <li>High contrast colors</li>
+  <li>Collections: 00 Inbox, 01 Method, 02 Topic X, 03 Topic Y</li>
+  <li>Tags with colors and number keys: 1 = To read, 2 = Reading, 3 = Read</li>
+  <li>A saved search called "To read" that lists everything unread</li>
+  <li>No automatic tag clutter from websites</li>
+</ul>
+
+<h2>Step 1: Download the file</h2>
+<p><a class="button" href="https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.0.xpi">Download the setup file</a></p>
+<p>The file is called <code>zotero-accessible-setup-1.0.0.xpi</code>. Remember where it lands, usually the Downloads folder.</p>
+
+<h2>Step 2: Install it in Zotero</h2>
+<p>Do this after Zotero is installed and opened once:</p>
+<ol>
+  <li>Open Zotero.</li>
+  <li>In the menu bar, click <span class="step">Tools</span>, then <span class="step">Plugins</span>.</li>
+  <li>In the Plugins window, click the <span class="step">gear button</span> at the top right.</li>
+  <li>Click <span class="step">Install Plugin From File&hellip;</span></li>
+  <li>Choose the downloaded <code>.xpi</code> file and confirm.</li>
+  <li>Restart Zotero when it offers to. Done.</li>
+</ol>
+<p>After the restart you should see the four collections on the left and the three colored tags at the bottom left, and the text should be larger.</p>
+
+<h2>Step 3: Print the cheat sheet</h2>
+<p>The cheat sheet has the most important keys and the five most common tasks, written out step by step.</p>
+<ol>
+  <li>Open the <a href="keyboard-shortcuts.html"><span class="step">cheat sheet page</span></a>.</li>
+  <li>Press <kbd>Cmd</kbd>+<kbd>P</kbd> to print it. The text is already large.</li>
+</ol>
+
+<h2>Three things only you can do</h2>
+<div class="note">
+  <ol>
+    <li><span class="step">Zotero account:</span> in Zotero, open Settings &gt; Account and sign in or create an account. This syncs your library.</li>
+    <li><span class="step">Browser connector:</span> on the Mac, install the Zotero Connector for Safari or Chrome from zotero.org/download.</li>
+    <li><span class="step">Mac settings:</span> System Settings &gt; Appearance &gt; Light, and Accessibility &gt; Increase contrast on. Zotero copies the Mac's look.</li>
+  </ol>
+</div>
+<p>For the iPad: install the free Zotero app from the App Store and sign in with the same account.</p>
+
+<h2>Questions or changes?</h2>
+<p>Want different colors, other collection names, or a different text size? Ask Sam. The setup is one small plugin and it is easy to adjust.</p>
+
+</body>
+</html>

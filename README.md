@@ -4,6 +4,16 @@ A Zotero setup for a researcher with a visual field of about 4 degrees (tunnel v
 
 Everything here targets **Zotero 10** (the current release, November 2026) and the Zotero Connector. The verdicts below come from Zotero documentation, the Zotero forums, and the Zotero 10 source code; links at the bottom. The stylesheet and the font-size settings were tested on a live Zotero 10 instance (see "Testing").
 
+## For her: one download instead of manual setup
+
+Most of the setup is packaged as a small plugin. She downloads one file, installs it through Zotero's Plugins window, restarts, and gets: larger text, high-contrast colors, the four numbered collections, the three colored status tags with number keys, the "To read" saved search, and automatic tagging turned off.
+
+- **Instructions page (for her):** https://utsmok.github.io/zotero-accessible/
+- **Download (stable link):** https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.0.xpi
+- Source: `plugin/`, release: https://github.com/utsmok/zotero-accessible/releases/tag/v1.0.0
+
+The plugin runs its setup once (guarded by a preference) and never overrides changes made afterwards in Settings. The instructions page also carries a copy of the printable cheat sheet.
+
 ## What each request needs
 
 | Request | Verdict | How |
@@ -60,8 +70,10 @@ All of this is on the printable sheet.
 
 ## Files
 
-- `files/userChrome.css`: high-contrast overrides for Zotero's light theme; install steps in the file header.
-- `files/keyboard-shortcuts.html`: printable 18 pt cheat sheet: keys plus the five most common task sequences.
+- `plugin/` — the setup plugin (`bootstrap.js`, `accessible-setup.js`, `style.css`, `manifest.json`, `updates.json`) plus the built `.xpi`. Applies prefs once, creates collections, tags, and the saved search, and registers the high-contrast stylesheet. Zotero 10 rejects plugin manifests without `applications.zotero.strict_max_version`, so it is set.
+- `files/userChrome.css` — the same high-contrast overrides as a manual profile stylesheet; an alternative to the plugin. Install steps in the file header.
+- `files/keyboard-shortcuts.html` — printable 18 pt cheat sheet: keys plus the five most common task sequences.
+- `site/` — the instructions webpage served by GitHub Pages (includes a copy of the cheat sheet).
 
 ## Testing
 
@@ -70,6 +82,7 @@ Verified on a live headless Zotero 10 (Linux build, November 2026) with screensh
 - `fontSize` set to 1.35 enlarged all UI text, and item list rows grew with it (comfortable density).
 - A `userChrome.css` with a diagnostic background and the variable overrides from this repo loaded and applied with `toolkit.legacyUserProfileCustomizations.stylesheets = true`.
 - Test items were injected through the local API to confirm real rows, title truncation, and the colored tag appearing in the tag selector.
+- The plugin in `plugin/` was installed through Zotero's remote-debugging addon API (the same manifest validation as a manual install) and produced: the four collections, the "To read" saved search, the three colored tags, `fontSize` 1.35, `automaticTags` false, and the high-contrast stylesheet, confirmed via the local API, the debug log, screenshots, and the persisted `prefs.js` after quit. Zotero's manifest validation rejects plugins without `applications.zotero.strict_max_version`; the built manifest sets it.
 
 ## Sources
 
