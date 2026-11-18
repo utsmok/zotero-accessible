@@ -9,7 +9,8 @@
 		"zotero": {
 			"id": "accessible-setup@utsmok",
 			"update_url": "https://raw.githubusercontent.com/utsmok/zotero-accessible/main/plugin/updates.json",
-			"strict_min_version": "7.0"
+			"strict_min_version": "7.0",
+			"strict_max_version": "10.*"
 		}
 	}
 }
