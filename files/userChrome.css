@@ -1,0 +1,34 @@
+/*
+ * Zotero high-contrast adjustments for low vision (tunnel vision).
+ *
+ * What it does: replaces Zotero's softened grays (text at 85% black,
+ * borders at 15% black) with solid black text and clearly visible borders.
+ * It does not change layout, sizes, or fonts. Those are set in Zotero's
+ * own settings (see README.md in this repository).
+ *
+ * Zotero follows the macOS system appearance. Keep the Mac in Light mode;
+ * this file only sharpens the light theme. If you switch the Mac to dark,
+ * remove this file rather than fighting the dark theme.
+ *
+ * Install (macOS):
+ *   1. Close Zotero.
+ *   2. Create this folder if needed, and copy this file into it as
+ *      userChrome.css:
+ *      ~/Library/Application Support/Zotero/Profiles/<xxxx>.default*/chrome/
+ *   3. In Zotero: Settings > Advanced > Config Editor, set
+ *      toolkit.legacyUserProfileCustomizations.stylesheets = true
+ *   4. Restart Zotero.
+ *
+ * This uses the Firefox userChrome mechanism that Zotero is built on.
+ * It works, but it is not an official extension point: a Zotero update
+ * can change style details, so re-check the look after major updates.
+ */
+:root {
+  --fill-primary: #000 !important;
+  --fill-secondary: #1a1a1a !important;
+  --fill-tertiary: #404040 !important;
+  --fill-quarternary: rgba(0, 0, 0, 0.35) !important;
+  --color-border: rgba(0, 0, 0, 0.55) !important;
+  --color-border50: rgba(0, 0, 0, 0.3) !important;
+  --color-panedivider: #555 !important;
+}
