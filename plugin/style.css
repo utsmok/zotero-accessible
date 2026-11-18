@@ -16,3 +16,98 @@
 	--color-border50: rgba(0, 0, 0, 0.3) !important;
 	--color-panedivider: #555 !important;
 }
+
+/*
+ * Selection at maximum contrast: black row, white text, in the item list
+ * and the collections list. When the list is not focused, a thick black
+ * outline keeps the selected row easy to find.
+ */
+.virtualized-table:focus-within .row.selected {
+	background-color: #000 !important;
+	color: #fff !important;
+}
+.virtualized-table:not(:focus-within) .row.selected {
+	outline: 3px solid #000;
+	outline-offset: -3px;
+}
+
+/* Show which row the pointer is on */
+.virtualized-table .row:not(.selected):hover {
+	outline: 2px dashed #000;
+	outline-offset: -2px;
+}
+
+/* Thick keyboard focus ring */
+:focus-visible {
+	outline: 3px solid #000 !important;
+	outline-offset: 2px !important;
+}
+
+/* Tooltips do not follow View > Font Size */
+tooltip {
+	font-size: 1.4em !important;
+	color: #000 !important;
+	background-color: #fff !important;
+	border: 2px solid #000 !important;
+}
+
+/* Centered confirmation message (tags, saves, focus view) */
+#accessible-setup-toast {
+	position: fixed;
+	z-index: 10000;
+	transform: translate(-50%, -50%);
+	max-width: 80vw;
+	padding: 0.6em 1em;
+	font-size: 1.8em;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	background: #000;
+	border: 6px solid #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 0 3px #000;
+	pointer-events: none;
+}
+#accessible-setup-toast[hidden] {
+	display: none !important;
+}
+
+/* "Focus view" and status tag buttons in the item list toolbar */
+#accessible-setup-focus-button,
+.accessible-setup-tag-button {
+	font: inherit;
+	font-weight: bold;
+	color: #000;
+	background: #fff;
+	border: 2px solid #000;
+	border-radius: 6px;
+	padding: 2px 10px;
+	margin-inline: 4px;
+	white-space: nowrap;
+}
+.accessible-setup-tag-button {
+	border-inline-start-width: 12px;
+}
+#accessible-setup-focus-button:hover,
+.accessible-setup-tag-button:hover {
+	background: #000;
+	color: #fff;
+}
+
+/* Optional low-glare colors: cream surfaces instead of white */
+:root[accessible-low-glare] {
+	--color-background: #f5efe0 !important;
+	--color-sidepane: #ebe3cf !important;
+	--color-toolbar: #ebe3cf !important;
+	--color-tabbar: #e3dac3 !important;
+	--color-menu: #f5efe0 !important;
+	--color-stripe-on-background: #ede6d4 !important;
+}
+
+/*
+ * Item details: hide empty fields so the Info section is short. Fields
+ * come back while being edited, and View > Show Empty Fields shows all.
+ */
+:root:not([accessible-show-empty-fields]) info-box .meta-row:has(> .meta-data > editable-text.value[value=""]):not(:focus-within) {
+	display: none !important;
+}

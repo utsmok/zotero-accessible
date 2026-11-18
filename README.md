@@ -9,12 +9,16 @@ Everything here targets **Zotero 10** (the current release, November 2026) and t
 Most of the setup is packaged as a small plugin. She downloads one file and installs it through Zotero's Plugins window. The changes apply immediately:
 
 - Much larger text: `fontSize` 1.7 (70% above the default) and note text at 24 px.
-- High-contrast colors: solid black text and visible borders instead of Zotero's softened grays.
-- Only the Title, Creator, and Year columns in the item list.
-- The four numbered collections, and every browser save lands in **00 Inbox**.
-- Three colored status tags with number keys, and whole-row color tinting for tagged items.
+- High-contrast colors: solid black text, visible borders, a black selected row with white text, a dashed outline on the row under the pointer, and a thick keyboard focus ring.
+- Only the Title, Creator, and Year columns in the item list, and item details that hide empty fields.
+- The four numbered collections. Every browser save lands in **00 Inbox** and gets the tag "To read".
+- Three colored status tags with number keys and big toolbar buttons, and whole-row color tinting for tagged items.
+- Opening a PDF or web snapshot moves its item from "To read" to "Reading"; a **Mark as Read** button in the reader toolbar sets "Read".
+- A large confirmation message in the middle of the item list (or window) for every tag change and save. Zotero's own notices sit in corners, outside a 4-degree field.
+- PDFs and web snapshots open in Reading Mode with a sans-serif font, 1.6 line spacing, and a narrow column. `Cmd/Ctrl+Shift+M` toggles it.
+- A **Focus view** button (`Cmd/Ctrl+Shift+H`) that hides the collections and item panes together.
 - The "To read" saved search, and automatic tagging turned off.
-- `Cmd/Ctrl+Shift+M` toggles Zotero 10's PDF Reading Mode.
+- Optional, in the View menu: low-glare cream colors for the app and the reader (off by default, because white gives the highest contrast), and showing empty fields.
 
 Links:
 
@@ -22,7 +26,7 @@ Links:
 - Download (stable link): https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup.xpi
 - Releases: https://github.com/utsmok/zotero-accessible/releases
 
-Each setup step runs once, guarded by the `extensions.zotero.accessiblesetup.level` preference, and never overrides changes made afterwards in Settings. Installs of 1.0.x get the new steps when they update to 1.1. The instructions page also carries the printable cheat sheet.
+Each setup step runs once, guarded by the `extensions.zotero.accessiblesetup.level` preference, and never overrides changes made afterwards in Settings. Older installs get the new steps when they update. The instructions page also carries the printable cheat sheet.
 
 ## What each request needs
 
@@ -65,8 +69,12 @@ Use these steps if the plugin can't be installed:
 ## What is not possible today
 
 1. **Pin the save destination when Zotero is closed or on the iPad.** The plugin can only redirect saves that go through the running Mac app.
-2. **Keyboard shortcuts for pane toggles.** View > Layout works with the mouse; upstream shortcut requests are open.
+2. **Native keyboard shortcuts for pane toggles.** Zotero has none; the plugin's Focus view (`Cmd+Shift+H`) hides both side panes at once, and View > Layout still toggles them one by one.
 3. **A built-in high-contrast theme.** Zotero has light and dark only. The plugin's stylesheet overrides Zotero's CSS variables, which are not a stable interface; re-check the look after major Zotero upgrades.
+
+## Recommended companion plugin
+
+[Linter for Zotero](https://github.com/northword/zotero-format-metadata) (v4.0.6, built for Zotero 10) lints each saved item: sentence-case titles, normal capitalization for ALL-CAPS author and journal names, DOI lookup that writes only on a unique Crossref match, and removal of placeholder values. Consistent word shapes matter for her because she reads a few words per glance. It is linked from the instructions page rather than bundled: it is AGPL, and its rules are maintained upstream. When you set it up for her, set its "Update Metadata" tool to blank fields only, because its default mode overwrites existing fields.
 
 ## Files
 
@@ -88,20 +96,26 @@ Zotero rejects plugin manifests without `applications.zotero.update_url` and `st
 The plugin uses a few Zotero internals, so re-test it after major Zotero updates:
 
 - The Inbox default wraps `Zotero.Server.Connector.getSaveTarget`; the original is restored when the plugin is disabled.
-- Columns are set through `ZoteroPane.itemsView.tree._columns.toggleHidden`, the same call the column menu uses.
-- The Reading Mode shortcut calls `reader._internalReader._handleReadingModeEnabledChange`, the toolbar button's handler, for the split view last used. `Cmd+Shift+R` and `Cmd+Shift+L` are taken by Read Aloud in Zotero 10, so the plugin uses `M`.
-- The row tint is a generated `<style>` with one rule per tag color, rebuilt when tag colors change. It skips selected rows, so Zotero's blue selection and white text stay intact, and it uses `!important` to beat Zotero's striped-row rule. Tag colors come from Zotero's palette; other colors show as black dots in the tag list.
+- New Inbox items get "To read" as an automatic tag (type 1), because the connector's save session rewrites manual tags when she edits the popup but keeps automatic ones. A side effect: Zotero's "Delete Automatic Tags in This Library" would remove these "To read" tags.
+- Tag button and number-key feedback wraps `Zotero.Tags.toggleItemsListTags`, the function Zotero's 1 to 9 keys call.
+- Columns are set through `ZoteroPane.itemsView.tree._columns.toggleHidden`, the same call the column menu uses, followed by fixed widths, because unhiding columns before layout can leave the Year column as wide as the window.
+- Reading Mode is switched on through `reader._internalReader._handleReadingModeEnabledChange`, the toolbar button's handler, on the `tab` notifier's `add` or `load` event. `Zotero.SDT.getPack` is checked first so documents Zotero can't reflow stay as they are without an error banner. The reflow view ignores `reader.ebookFontFamily`, so the plugin sets the font on it, and sets line height and page width through `_handleAppearanceChange` with `Cu.cloneInto`, because the reader runs in its own compartment. `Cmd+Shift+R`, `Cmd+Shift+L`, and `Cmd+Shift+F` are taken in Zotero 10 (Read Aloud, advanced search), so the plugin uses `M` and `H`.
+- The **Mark as Read** button uses `Zotero.Reader.registerEventListener('renderToolbar', …)`.
+- The row tint is a generated `<style>` with one rule per tag color, rebuilt when tag colors change. It skips selected rows, and it uses `!important` to beat Zotero's striped-row rule. Tag colors come from Zotero's palette; other colors show as black dots in the tag list.
+- Low-glare mode overrides Zotero's background variables and creates a reader theme "Low glare" (cream `#f5efe0`, black text) in the synced `readerCustomThemes` setting.
+- The stylesheet URL carries the plugin version, because Gecko keeps serving a cached stylesheet for the same URL after an in-place plugin update.
 
 ## Testing
 
-Plugin 1.1.0 was tested on a live headless Zotero 10.0.8 (Linux build) in a fresh profile, with screenshots and state read through the remote debugger:
+Plugin 1.2.0 was tested on a live headless Zotero 10.0.8 (Linux build), with screenshots and state read through the remote debugger:
 
 - Installed through `AddonManager.getInstallForFile`, the same path as Install Plugin From File. Collections, saved search, tags, columns, font sizes, and `automaticTags` were all applied.
-- A real `POST /connector/saveItems` while another view was selected landed in 00 Inbox. Disabling the plugin restored the original target; enabling it brought the Inbox back.
-- Tagged rows were tinted red, orange, and green with black text. The selected tagged row kept Zotero's blue highlight with white text. Tag list dots showed the tag colors.
-- `Ctrl+Shift+M` in an open PDF switched Reading Mode on and off.
-- Upgrade from 1.0.1 (simulated state): the old tag colors moved to the palette, and the column and note-font steps ran. The same steps also ran during app startup after a restart.
-- The plugin and its stylesheet loaded again after a full restart.
+- A real `POST /connector/saveItems` while another view was selected landed in 00 Inbox with the tag "To read", and the tag survived a later `/connector/updateSession` that added another tag. A centered message confirmed the save.
+- Tag buttons and `toggleItemsListTags` showed centered messages; tagged rows were tinted, and the selected row was black with white text.
+- Opening a PDF and a web snapshot moved "To read" to "Reading" and switched on Reading Mode with Verdana, line height 1.6, and the narrow column. `Ctrl+Shift+M` switched it off and on again. **Mark as Read** set "Read".
+- Focus view hid and restored both panes; column widths stayed the same. Low-glare mode switched the backgrounds and the reader theme.
+- Item details showed only filled fields (Item Type, Title, Author, Date, and the dates added and modified).
+- Upgrade from level 2 ran only the level 3 steps. Upgrade from 1.0.1 and restart persistence were tested for 1.1.0.
 
 Not tested here: the macOS build, the Safari and Chrome connectors themselves, sync, the iPad app, and the `updates.json` auto-update flow.
 

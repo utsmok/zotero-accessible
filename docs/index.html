@@ -50,15 +50,17 @@
 <p>One download sets up Zotero on a new computer. You install it once, and everything below is done for you:</p>
 <ul>
   <li>Much larger text everywhere (70% bigger than the Zotero default), also in notes</li>
-  <li>High contrast colors</li>
-  <li>Only three columns in the item list: Title, Creator, Year</li>
+  <li>High contrast colors: black text, and the selected item shown as a black row with white text</li>
+  <li>Only three columns in the item list: Title, Creator, Year; item details show only fields that have content</li>
   <li>Collections: 00 Inbox, 01 Method, 02 Topic X, 03 Topic Y</li>
-  <li>Everything you save from the browser lands in 00 Inbox, whatever is selected in Zotero</li>
-  <li>Tags with colors and number keys: 1 = To read (red), 2 = Reading (orange), 3 = Read (green). Tagged items show their color across the whole row</li>
-  <li>A saved search called "To read" that lists everything unread</li>
-  <li>No automatic tag clutter from websites</li>
-  <li>A keyboard shortcut, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>, that switches a PDF into Reading Mode: one clean column of text that you can make as large as you like</li>
+  <li>Everything you save from the browser lands in 00 Inbox with the tag "To read", and a large message in the middle of the screen confirms it</li>
+  <li>Three colored tags: To read (red), Reading (orange), Read (green). Big buttons above the item list, or the keys 1, 2, 3, add or remove them. The whole row takes the tag's color</li>
+  <li>Opening a PDF moves it from "To read" to "Reading"; a <b>Mark as Read</b> button in the PDF toolbar finishes it</li>
+  <li>PDFs and saved web pages open in Reading Mode: one narrow column of plain text with wide line spacing. <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> switches back to the original pages</li>
+  <li>A <b>Focus view</b> button that hides the side panes, so only the item list is left</li>
+  <li>A saved search called "To read" that lists everything unread, and no automatic tag clutter from websites</li>
 </ul>
+<p>Options in the <span class="step">View</span> menu, at the bottom: <span class="step">Focus View</span>, <span class="step">Open PDFs in Reading Mode</span>, <span class="step">Low-Glare Colors</span> (cream instead of white, for days when bright screens hurt), and <span class="step">Show Empty Fields in Item Details</span> (to fill in a missing field).</p>
 
 <h2>Step 1: Download the file</h2>
 <p><a class="button" href="https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup.xpi">Download the setup file</a></p>
@@ -92,6 +94,24 @@
   </ol>
 </div>
 <p>For the iPad: install the free Zotero app from the App Store and sign in with the same account. When you save from Safari on the iPad with the Share button, choose 00 Inbox as the collection; the plugin only works on the Mac.</p>
+
+<h2>Optional: tidy titles and author names automatically</h2>
+<p>Websites often save titles in CAPITALS or with odd spelling. The free plugin <b>Linter for Zotero</b> fixes this when an item is saved: titles in normal sentence case, author names with normal capitals, and missing DOIs filled in. Install it the same way as the setup file:</p>
+<ol>
+  <li>Download <a href="https://github.com/northword/zotero-format-metadata/releases/download/v4.0.6/linter-for-zotero.xpi">linter-for-zotero.xpi</a>.</li>
+  <li>In Zotero, open <span class="step">Tools &gt; Plugins</span>, click the gear button, click <span class="step">Install Plugin From File&hellip;</span>, and choose the file.</li>
+</ol>
+
+<h2>Mac settings that help in every app</h2>
+<p>These are optional. Try them one at a time; each works in Zotero, the browser, and Word. All are in <span class="step">System Settings &gt; Accessibility</span>.</p>
+<ul>
+  <li><span class="step">Hover Text:</span> turn it on, then hold <kbd>Cmd</kbd> while pointing at any text to see it very large in a box. It enlarges one line without zooming the whole screen, so the rest stays where it was.</li>
+  <li><span class="step">Display &gt; Pointer:</span> make the pointer larger, give it a bright outline color, and turn on <span class="step">Shake mouse pointer to locate</span>. A wiggle on the trackpad then makes the pointer big for a moment.</li>
+  <li><span class="step">Display:</span> <span class="step">Increase contrast</span> and <span class="step">Reduce transparency</span> on. Both remove pale, see-through backgrounds.</li>
+  <li><span class="step">Read &amp; Speak:</span> turn on <span class="step">Speak selection</span>. Select any text and press <kbd>Option</kbd>+<kbd>Esc</kbd> to hear it.</li>
+  <li><span class="step">Zoom:</span> if you want a magnifier, choose the <span class="step">Picture-in-picture</span> zoom style. It magnifies a box around the pointer and keeps the rest of the screen in place.</li>
+</ul>
+<p>On the iPad, <span class="step">Settings &gt; Accessibility &gt; Per-App Settings</span> lets you make text larger in the Zotero app only. In the Zotero app's PDF reader, the <span class="step">Aa</span> button sets the text size.</p>
 
 <h2>Questions or changes?</h2>
 <p>Text too large or too small? Use <span class="step">View &gt; Font Size</span> in Zotero. Want different colors or other collection names? Ask Sam; the setup is one small plugin and easy to adjust.</p>

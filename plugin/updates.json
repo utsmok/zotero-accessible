@@ -9,6 +9,10 @@
 				{
 					"version": "1.1.0",
 					"update_link": "https://github.com/utsmok/zotero-accessible/releases/download/v1.1.0/zotero-accessible-setup.xpi"
+				},
+				{
+					"version": "1.2.0",
+					"update_link": "https://github.com/utsmok/zotero-accessible/releases/download/v1.2.0/zotero-accessible-setup.xpi"
 				}
 			]
 		}
