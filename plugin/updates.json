@@ -1,7 +1,12 @@
 {
 	"addons": {
 		"accessible-setup@utsmok": {
-			"updates": []
+			"updates": [
+				{
+					"version": "1.0.1",
+					"update_link": "https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.1.xpi"
+				}
+			]
 		}
 	}
 }

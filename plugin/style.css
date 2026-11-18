@@ -15,3 +15,18 @@
 	--color-border50: rgba(0, 0, 0, 0.3) !important;
 	--color-panedivider: #555 !important;
 }
+
+/*
+ * Tint the whole item row with the item's colored status tag; Zotero only
+ * draws a small swatch. A 20% mix into white keeps black text far above
+ * 7:1 contrast, and Zotero's .selected/.focused styles keep priority.
+ */
+.virtualized-table .row:has(.tag-swatch[data-color="#ff6666"]) {
+	background: color-mix(in srgb, #ff6666 20%, white);
+}
+.virtualized-table .row:has(.tag-swatch[data-color="#ffbf40"]) {
+	background: color-mix(in srgb, #ffbf40 20%, white);
+}
+.virtualized-table .row:has(.tag-swatch[data-color="#66cc66"]) {
+	background: color-mix(in srgb, #66cc66 20%, white);
+}

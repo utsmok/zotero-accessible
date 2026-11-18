@@ -38,8 +38,8 @@ AccessibleSetup = {
 	},
 
 	applyPrefs() {
-		// View > Font Size, two steps up from the default (1.00)
-		Zotero.Prefs.set('fontSize', '1.35');
+		// View > Font Size; well past the 1.5 slider maximum, which Zotero accepts
+		Zotero.Prefs.set('fontSize', '1.7');
 		// Settings > General > "Automatically tag items with keywords and subject headings"
 		Zotero.Prefs.set('automaticTags', false);
 	},
@@ -81,6 +81,23 @@ AccessibleSetup = {
 		link.href = this.rootURI + 'style.css';
 		doc.documentElement.appendChild(link);
 		this.storeAddedElement(link);
+
+		// Zotero 10 has no keyboard shortcut for Reading Mode, only the
+		// reader toolbar button. Ctrl/Cmd+Shift+R toggles it in the active tab.
+		let handler = (event) => {
+			if (!(event.ctrlKey || event.metaKey) || !event.shiftKey || event.altKey) return;
+			if (event.key.toLowerCase() !== 'r') return;
+			let reader = window.Zotero_Tabs && Zotero.Reader.getByTabID(window.Zotero_Tabs.selectedID);
+			if (!reader) return;
+			let internal = reader._internalReader;
+			if (!internal) return;
+			event.preventDefault();
+			event.stopPropagation();
+			let enabled = internal._state.primaryReadingModeEnabled;
+			internal._handleReadingModeEnabledChange(!enabled);
+		};
+		doc.addEventListener('keydown', handler, true);
+		window.__accessibleSetupKeyHandler = handler;
 	},
 
 	addToAllWindows() {
@@ -99,6 +116,10 @@ AccessibleSetup = {
 
 	removeFromWindow(window) {
 		let doc = window.document;
+		if (window.__accessibleSetupKeyHandler) {
+			doc.removeEventListener('keydown', window.__accessibleSetupKeyHandler, true);
+			delete window.__accessibleSetupKeyHandler;
+		}
 		for (let id of this.addedElementIDs) {
 			doc.getElementById(id)?.remove();
 		}

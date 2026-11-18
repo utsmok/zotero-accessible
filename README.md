@@ -6,11 +6,11 @@ Everything here targets **Zotero 10** (the current release, November 2026) and t
 
 ## For her: one download instead of manual setup
 
-Most of the setup is packaged as a small plugin. She downloads one file, installs it through Zotero's Plugins window, restarts, and gets: larger text, high-contrast colors, the four numbered collections, the three colored status tags with number keys, the "To read" saved search, and automatic tagging turned off.
+Most of the setup is packaged as a small plugin. She downloads one file, installs it through Zotero's Plugins window, restarts, and gets: much larger text (fontSize 1.7, 70% above the default), high-contrast colors, the four numbered collections, the three colored status tags with number keys, whole-row color tinting for tagged items, the "To read" saved search, automatic tagging turned off, and a `Ctrl/Cmd+Shift+R` shortcut for Zotero 10's PDF Reading Mode.
 
 - **Instructions page (for her):** https://utsmok.github.io/zotero-accessible/
-- **Download (stable link):** https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.0.xpi
-- Source: `plugin/`, release: https://github.com/utsmok/zotero-accessible/releases/tag/v1.0.0
+- **Download (stable link):** https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.1.xpi
+- Source: `plugin/`, releases: https://github.com/utsmok/zotero-accessible/releases
 
 The plugin runs its setup once (guarded by a preference) and never overrides changes made afterwards in Settings. The instructions page also carries a copy of the printable cheat sheet.
 
@@ -79,10 +79,11 @@ All of this is on the printable sheet.
 
 Verified on a live headless Zotero 10 (Linux build, November 2026) with screenshots:
 
-- `fontSize` set to 1.35 enlarged all UI text, and item list rows grew with it (comfortable density).
+- `fontSize` set to 1.7 enlarged all UI text, and item list rows grew with it (comfortable density). 1.7 exceeds the 1.5 maximum of the View menu slider; Zotero accepts it and the slider then shows the value as maxed out.
 - A `userChrome.css` with a diagnostic background and the variable overrides from this repo loaded and applied with `toolkit.legacyUserProfileCustomizations.stylesheets = true`.
 - Test items were injected through the local API to confirm real rows, title truncation, and the colored tag appearing in the tag selector.
-- The plugin in `plugin/` was installed through Zotero's remote-debugging addon API (the same manifest validation as a manual install) and produced: the four collections, the "To read" saved search, the three colored tags, `fontSize` 1.35, `automaticTags` false, and the high-contrast stylesheet, confirmed via the local API, the debug log, screenshots, and the persisted `prefs.js` after quit. Zotero's manifest validation rejects plugins without `applications.zotero.strict_max_version`; the built manifest sets it.
+- The plugin in `plugin/` was installed through Zotero's remote-debugging addon API (the same manifest validation as a manual install) and produced: the four collections, the "To read" saved search, the three colored tags, `fontSize` 1.7, `automaticTags` false, and the high-contrast stylesheet, confirmed via the local API, the debug log, screenshots, and the persisted `prefs.js` after quit. Zotero's manifest validation rejects plugins without `applications.zotero.strict_max_version`; the built manifest sets it.
+- Plugin 1.0.1 additions, verified in the same live instance: the whole item row is tinted with the item's colored status tag (`:has()` on the tag swatch's `data-color`, a 20% `color-mix` into white, so black text keeps full contrast and Zotero's selection styles keep priority); and `Ctrl/Cmd+Shift+R` toggles the Zotero 10 PDF Reading Mode from both the library view and inside the reader (Zotero ships Reading Mode with a toolbar button only; the plugin calls `reader._internalReader._handleReadingModeEnabledChange(!internal._state.primaryReadingModeEnabled)`). Toggling on and off was verified with screenshots of both toolbars.
 
 ## Sources
 
