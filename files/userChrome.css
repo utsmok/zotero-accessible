@@ -34,13 +34,18 @@
 }
 
 /* Tint the whole item row with the item's colored status tag. Zotero only
-   draws a small swatch. 20% mixes keep black text above 7:1 contrast. */
-.virtualized-table .row:has(.tag-swatch[data-color="#ff6666"]) {
-  background: color-mix(in srgb, #ff6666 20%, white);
+   draws a small swatch. 30% mixes keep black text above 7:1 contrast.
+   Selected rows keep Zotero's own highlight and white text. !important
+   beats Zotero's odd-row stripe rule. */
+#zotero-items-tree .row:not(.selected):has(.tag-swatch[data-color="#ff6666"]) {
+  background-color: color-mix(in srgb, #ff6666 30%, white) !important;
+  color: #000 !important;
 }
-.virtualized-table .row:has(.tag-swatch[data-color="#ffbf40"]) {
-  background: color-mix(in srgb, #ffbf40 20%, white);
+#zotero-items-tree .row:not(.selected):has(.tag-swatch[data-color="#ff8c19"]) {
+  background-color: color-mix(in srgb, #ff8c19 30%, white) !important;
+  color: #000 !important;
 }
-.virtualized-table .row:has(.tag-swatch[data-color="#66cc66"]) {
-  background: color-mix(in srgb, #66cc66 20%, white);
+#zotero-items-tree .row:not(.selected):has(.tag-swatch[data-color="#5fb236"]) {
+  background-color: color-mix(in srgb, #5fb236 30%, white) !important;
+  color: #000 !important;
 }

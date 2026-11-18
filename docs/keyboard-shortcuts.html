@@ -16,6 +16,8 @@
   }
   h1 { font-size: 1.5em; margin: 0 0 0.4em 0; }
   h2 { font-size: 1.15em; margin: 1em 0 0.3em 0; border-bottom: 3px solid #000; padding-bottom: 0.1em; }
+  h2, h3 { break-after: avoid; }
+  ol, tr { break-inside: avoid; }
   table { border-collapse: collapse; width: 100%; }
   th, td { text-align: left; padding: 0.25em 0.5em; border-bottom: 1.5px solid #000; vertical-align: top; }
   th { background: #eee; }
@@ -31,74 +33,75 @@
   ol { margin: 0.2em 0 0.5em 1.4em; padding: 0; }
   ol li { margin-bottom: 0.25em; }
   .task { font-weight: bold; }
-  .pagebreak { page-break-before: always; }
+  .pagebreak { break-before: page; }
   .small { font-size: 0.8em; }
 </style>
 </head>
 <body>
 
 <h1>Zotero cheat sheet</h1>
-<p class="small">For Zotero 10 on macOS. Print this page: File &gt; Print, keep the font size.</p>
+<p class="small">For Zotero 10 on macOS with the Accessible Setup plugin. Print this page with <kbd>Cmd</kbd>+<kbd>P</kbd> and keep the scale at 100%.</p>
 
 <h2>Keys to know</h2>
 <table>
   <tr><th>Do this</th><th>Key</th></tr>
   <tr><td>Search in the item list</td><td><kbd>Cmd</kbd>+<kbd>F</kbd></td></tr>
-  <tr><td>New empty item</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></td></tr>
-  <tr><td>Apply tag 1 / 2 / 3 to selected item(s)</td><td><kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td></tr>
-  <tr><td>Show or hide the tag list (bottom left)</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd></td></tr>
-  <tr><td>Move item to Trash (inside a collection)</td><td><kbd>Cmd</kbd>+<kbd>Delete</kbd></td></tr>
-  <tr><td>Copy formatted citations of selected items</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd></td></tr>
-  <tr><td>Switch between open PDFs (tabs)</td><td><kbd>Cmd</kbd>+<kbd>1</kbd> ... <kbd>Cmd</kbd>+<kbd>9</kbd></td></tr>
+  <tr><td>Apply or remove tag 1 / 2 / 3 on the selected items</td><td><kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td></tr>
+  <tr><td>Remove the item from this collection (it stays in My Library)</td><td><kbd>Delete</kbd>, then <kbd>Return</kbd></td></tr>
+  <tr><td>Move the item to the Trash</td><td><kbd>Cmd</kbd>+<kbd>Delete</kbd>, then <kbd>Return</kbd></td></tr>
+  <tr><td>Undo the last change</td><td><kbd>Cmd</kbd>+<kbd>Z</kbd></td></tr>
+  <tr><td>Copy a citation of the selected items</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd></td></tr>
+  <tr><td>Close the open PDF tab</td><td><kbd>Cmd</kbd>+<kbd>W</kbd></td></tr>
+  <tr><td>Reading Mode on or off (in a PDF: one column of large text)</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></td></tr>
   <tr><td>Bigger / smaller text in a PDF</td><td><kbd>Cmd</kbd>+<kbd>+</kbd> / <kbd>Cmd</kbd>+<kbd>-</kbd></td></tr>
-  <tr><td>Reading Mode on or off (in a PDF, reflowed text)</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (added by the setup plugin)</td></tr>
-  <tr><td>Read Aloud on or off (in a PDF)</td><td><kbd>L</kbd> or <kbd>R</kbd>, or the headphones button</td></tr>
-  <tr><td>Highlight / underline tool (in a PDF)</td><td><kbd>Option</kbd>+<kbd>1</kbd> / <kbd>Option</kbd>+<kbd>2</kbd></td></tr>
+  <tr><td>Read Aloud on or off (in a PDF)</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td></tr>
+  <tr><td>Pause or continue Read Aloud</td><td><kbd>Space</kbd></td></tr>
+  <tr><td>Hide or show a pane</td><td>No key: menu <span class="task">View &gt; Layout</span></td></tr>
 </table>
 
 <h2 class="pagebreak">Recipes: the five things you do most</h2>
 
 <h2>1. Save an article from the browser</h2>
 <ol>
-  <li>In Zotero, click <span class="task">00 Inbox</span> in the left pane once. New saves now land there.</li>
-  <li>On the article page, click the <span class="task">Zotero connector button</span> in the browser.</li>
-  <li>The popup must say folder <span class="task">00 Inbox</span>. Click it. The PDF is saved and renamed automatically.</li>
-  <li>If Zotero was closed, the item lands on the website account and appears later under <span class="task">Unfiled Items</span>.</li>
+  <li>Make sure Zotero is open.</li>
+  <li>On the article page, click the <span class="task">Zotero button</span> in the browser toolbar.</li>
+  <li>A small window confirms the save into <span class="task">00 Inbox</span>. This happens automatically. If the site offers a PDF, it is saved and renamed too.</li>
+  <li>If Zotero was closed, the item still reaches your online library. It appears later under <span class="task">Unfiled Items</span>.</li>
 </ol>
 
 <h2>2. Weekly sorting of the Inbox</h2>
 <ol>
-  <li>In Zotero, click <span class="task">00 Inbox</span>. Also look at <span class="task">Unfiled Items</span> (bottom of the left pane).</li>
-  <li>Click an item. The right pane shows author, year, title.</li>
-  <li>Keep it: drag it onto a topic collection, for example <span class="task">02 Topic X</span>. Tag it <span class="task">To read</span>: press <kbd>1</kbd>.</li>
-  <li>Not needed: press <kbd>Cmd</kbd>+<kbd>Delete</kbd> to move it to the Trash.</li>
-  <li>Done: the Inbox is empty again.</li>
+  <li>In Zotero, click <span class="task">00 Inbox</span> in the left pane. Also check <span class="task">Unfiled Items</span>.</li>
+  <li>Click an item. The right pane shows author, year, and title.</li>
+  <li>To keep it: right-click the item, choose <span class="task">Add to Collection</span>, and click a topic, for example <span class="task">02 Topic X</span>. Press <kbd>1</kbd> to tag it <span class="task">To read</span>.</li>
+  <li>Then take it out of the Inbox: press <kbd>Delete</kbd> and confirm with <kbd>Return</kbd>. The item stays in the topic collection.</li>
+  <li>If you don't need it: press <kbd>Cmd</kbd>+<kbd>Delete</kbd> and confirm with <kbd>Return</kbd>. It goes to the Trash.</li>
+  <li>Repeat until the Inbox is empty.</li>
 </ol>
 
 <h2>3. Mark reading progress with tags</h2>
 <ol>
-  <li>Click one item, or select several with clicks while holding <kbd>Cmd</kbd>.</li>
-  <li>Press <kbd>1</kbd> for <span class="task">To read</span>, <kbd>2</kbd> for <span class="task">Reading</span>, <kbd>3</kbd> for <span class="task">Read</span>. Pressing the number again removes the tag.</li>
-  <li>Tagged items show their color across the whole row, not only the small dot.</li>
-  <li>To see everything unread: click the saved search <span class="task">To read</span> in the left pane.</li>
+  <li>Click one item. To select more, hold <kbd>Cmd</kbd> while clicking.</li>
+  <li>Press <kbd>1</kbd> for <span class="task">To read</span> (red), <kbd>2</kbd> for <span class="task">Reading</span> (orange), or <kbd>3</kbd> for <span class="task">Read</span> (green). Press the same number again to remove the tag.</li>
+  <li>The whole row takes the tag's color.</li>
+  <li>To see everything unread, click the saved search <span class="task">To read</span> in the left pane.</li>
 </ol>
 
 <h2>4. Read a PDF comfortably</h2>
 <ol>
   <li>Double-click the item. The PDF opens in a tab.</li>
-  <li>Press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>: Reading Mode turns the PDF into one clean column of reflowed text. Press it again to go back to the original page view.</li>
-  <li>In Reading Mode, use <kbd>Cmd</kbd>+<kbd>+</kbd> until the reflowed text is large enough.</li>
-  <li>Tired of reading? Press <kbd>L</kbd>: Zotero reads aloud and marks the sentence.</li>
+  <li>Press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. Reading Mode shows the text as one clean column. Press it again for the original pages.</li>
+  <li>Press <kbd>Cmd</kbd>+<kbd>+</kbd> until the text is large enough.</li>
+  <li>To listen instead, press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd>. Zotero reads aloud and marks the sentence. Press <kbd>Space</kbd> to pause.</li>
+  <li>Press <kbd>Cmd</kbd>+<kbd>W</kbd> to close the PDF and go back to the library.</li>
 </ol>
 
 <h2>5. Cite in Word</h2>
 <ol>
   <li>In Word, open the <span class="task">Zotero</span> tab.</li>
-  <li>Click <span class="task">Add/Edit Citation</span>, type a few words of the title, pick the item, press <kbd>Enter</kbd>.</li>
-  <li>At the end of the document: click <span class="task">Add/Edit Bibliography</span>.</li>
+  <li>Click <span class="task">Add/Edit Citation</span>, type a few words of the title, pick the item, and press <kbd>Return</kbd>.</li>
+  <li>At the end of the document, click <span class="task">Add/Edit Bibliography</span>.</li>
 </ol>
-
-<p class="small">Adjust any of this together before printing final copies.</p>
 
 </body>
 </html>

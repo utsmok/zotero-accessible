@@ -47,20 +47,22 @@
 <body>
 
 <h1>Zotero Accessible Setup</h1>
-<p>One download sets up Zotero on a new computer. You install it once, restart Zotero, and everything below is done for you:</p>
+<p>One download sets up Zotero on a new computer. You install it once, and everything below is done for you:</p>
 <ul>
-  <li>Much larger text everywhere (70% bigger than the Zotero default)</li>
+  <li>Much larger text everywhere (70% bigger than the Zotero default), also in notes</li>
   <li>High contrast colors</li>
+  <li>Only three columns in the item list: Title, Creator, Year</li>
   <li>Collections: 00 Inbox, 01 Method, 02 Topic X, 03 Topic Y</li>
-  <li>Tags with colors and number keys: 1 = To read, 2 = Reading, 3 = Read. Tagged items show their color across the whole row, not just a dot</li>
+  <li>Everything you save from the browser lands in 00 Inbox, whatever is selected in Zotero</li>
+  <li>Tags with colors and number keys: 1 = To read (red), 2 = Reading (orange), 3 = Read (green). Tagged items show their color across the whole row</li>
   <li>A saved search called "To read" that lists everything unread</li>
   <li>No automatic tag clutter from websites</li>
-  <li>A keyboard shortcut, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>, to switch a PDF into Reading Mode: one clean column of reflowed text with adjustable text size</li>
+  <li>A keyboard shortcut, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>, that switches a PDF into Reading Mode: one clean column of text that you can make as large as you like</li>
 </ul>
 
 <h2>Step 1: Download the file</h2>
-<p><a class="button" href="https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.0.xpi">Download the setup file</a></p>
-<p>The file is called <code>zotero-accessible-setup-1.0.0.xpi</code>. Remember where it lands, usually the Downloads folder.</p>
+<p><a class="button" href="https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup.xpi">Download the setup file</a></p>
+<p>The file is called <code>zotero-accessible-setup.xpi</code>. It usually lands in the Downloads folder.</p>
 
 <h2>Step 2: Install it in Zotero</h2>
 <p>Do this after Zotero is installed and opened once:</p>
@@ -70,9 +72,9 @@
   <li>In the Plugins window, click the <span class="step">gear button</span> at the top right.</li>
   <li>Click <span class="step">Install Plugin From File&hellip;</span></li>
   <li>Choose the downloaded <code>.xpi</code> file and confirm.</li>
-  <li>Restart Zotero when it offers to. Done.</li>
 </ol>
-<p>After the restart you should see the four collections on the left and the three colored tags at the bottom left, and the text should be larger.</p>
+<p>The changes appear right away; no restart is needed. You should see larger text, the four collections on the left, and the three colored tags at the bottom left.</p>
+<p>The plugin updates itself. If you installed an earlier version, open <span class="step">Tools &gt; Plugins</span>, click the gear button, and click <span class="step">Check for Updates</span> to get the newest one now.</p>
 
 <h2>Step 3: Print the cheat sheet</h2>
 <p>The cheat sheet has the most important keys and the five most common tasks, written out step by step.</p>
@@ -85,14 +87,14 @@
 <div class="note">
   <ol>
     <li><span class="step">Zotero account:</span> in Zotero, open Settings &gt; Account and sign in or create an account. This syncs your library.</li>
-    <li><span class="step">Browser connector:</span> on the Mac, install the Zotero Connector for Safari or Chrome from zotero.org/download.</li>
+    <li><span class="step">Browser connector:</span> for Safari, the connector comes with Zotero; turn it on in Safari &gt; Settings &gt; Extensions. For Chrome, install the Zotero Connector from zotero.org/download.</li>
     <li><span class="step">Mac settings:</span> System Settings &gt; Appearance &gt; Light, and Accessibility &gt; Increase contrast on. Zotero copies the Mac's look.</li>
   </ol>
 </div>
-<p>For the iPad: install the free Zotero app from the App Store and sign in with the same account.</p>
+<p>For the iPad: install the free Zotero app from the App Store and sign in with the same account. When you save from Safari on the iPad with the Share button, choose 00 Inbox as the collection; the plugin only works on the Mac.</p>
 
 <h2>Questions or changes?</h2>
-<p>Want different colors, other collection names, or a different text size? Ask Sam. The setup is one small plugin and it is easy to adjust.</p>
+<p>Text too large or too small? Use <span class="step">View &gt; Font Size</span> in Zotero. Want different colors or other collection names? Ask Sam; the setup is one small plugin and easy to adjust.</p>
 
 </body>
 </html>

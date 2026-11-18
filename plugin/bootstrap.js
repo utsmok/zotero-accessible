@@ -12,7 +12,8 @@ async function startup({ id, version, rootURI }) {
 	Services.scriptloader.loadSubScript(rootURI + 'accessible-setup.js');
 	AccessibleSetup.init({ id, version, rootURI });
 	AccessibleSetup.addToAllWindows();
-	await AccessibleSetup.applySetup();
+	// Not awaited: the column step waits for the main window, which may open after startup
+	AccessibleSetup.applySetup();
 }
 
 function onMainWindowLoad({ window }) {
@@ -25,7 +26,7 @@ function onMainWindowUnload({ window }) {
 
 function shutdown() {
 	if (AccessibleSetup) {
-		AccessibleSetup.removeFromAllWindows();
+		AccessibleSetup.shutdown();
 	}
 	AccessibleSetup = undefined;
 }

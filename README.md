@@ -2,88 +2,108 @@
 
 A Zotero setup for a researcher with a visual field of about 4 degrees (tunnel vision) and disturbed light perception. She works on an iMac with a trackpad, rarely uses keyboard shortcuts, and uses an iPad when away from her desk.
 
-Everything here targets **Zotero 10** (the current release, November 2026) and the Zotero Connector. The verdicts below come from Zotero documentation, the Zotero forums, and the Zotero 10 source code; links at the bottom. The stylesheet and the font-size settings were tested on a live Zotero 10 instance (see "Testing").
+Everything here targets **Zotero 10** (the current release, November 2026) and the Zotero Connector. The verdicts below come from Zotero documentation, the Zotero forums, and the Zotero 10 source code; links at the bottom. The plugin was tested on a live Zotero 10 instance (see "Testing").
 
 ## For her: one download instead of manual setup
 
-Most of the setup is packaged as a small plugin. She downloads one file, installs it through Zotero's Plugins window, restarts, and gets: much larger text (fontSize 1.7, 70% above the default), high-contrast colors, the four numbered collections, the three colored status tags with number keys, whole-row color tinting for tagged items, the "To read" saved search, automatic tagging turned off, and a `Ctrl/Cmd+Shift+R` shortcut for Zotero 10's PDF Reading Mode.
+Most of the setup is packaged as a small plugin. She downloads one file and installs it through Zotero's Plugins window. The changes apply immediately:
 
-- **Instructions page (for her):** https://utsmok.github.io/zotero-accessible/
-- **Download (stable link):** https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup-1.0.1.xpi
-- Source: `plugin/`, releases: https://github.com/utsmok/zotero-accessible/releases
+- Much larger text: `fontSize` 1.7 (70% above the default) and note text at 24 px.
+- High-contrast colors: solid black text and visible borders instead of Zotero's softened grays.
+- Only the Title, Creator, and Year columns in the item list.
+- The four numbered collections, and every browser save lands in **00 Inbox**.
+- Three colored status tags with number keys, and whole-row color tinting for tagged items.
+- The "To read" saved search, and automatic tagging turned off.
+- `Cmd/Ctrl+Shift+M` toggles Zotero 10's PDF Reading Mode.
 
-The plugin runs its setup once (guarded by a preference) and never overrides changes made afterwards in Settings. The instructions page also carries a copy of the printable cheat sheet.
+Links:
+
+- Instructions page (for her): https://utsmok.github.io/zotero-accessible/
+- Download (stable link): https://github.com/utsmok/zotero-accessible/releases/latest/download/zotero-accessible-setup.xpi
+- Releases: https://github.com/utsmok/zotero-accessible/releases
+
+Each setup step runs once, guarded by the `extensions.zotero.accessiblesetup.level` preference, and never overrides changes made afterwards in Settings. Installs of 1.0.x get the new steps when they update to 1.1. The instructions page also carries the printable cheat sheet.
 
 ## What each request needs
 
 | Request | Verdict | How |
 | --- | --- | --- |
-| High contrast, but NOT dark mode | Yes | Zotero follows the macOS appearance, so keep the Mac in Light mode. Zotero's light theme uses softened grays (main text at 85% black, borders at 15%); `files/userChrome.css` replaces them with solid black and visible borders. macOS "Increase contrast" adds more. |
-| Larger font and comfortable spacing | Yes | View > Font Size > Larger (repeat 2 to 4 times; it maps to the `fontSize` setting). Item list rows grow with the font automatically, and the Comfortable density keeps extra padding. Row height is computed from font size and density in Zotero's code, so no manual spacing work is needed. |
-| Only a few columns (author, title, year) | Yes | Right-click the column header, untick everything, then tick Title, Creator, and Year. A dedicated Year column exists in the current version. |
-| Hide a pane when it is not needed | Yes | View > Layout > Collections Pane / Items Pane / Item Pane / Tag Selector. There is no keyboard shortcut for these toggles (open feature request, see below). |
-| Printed keyboard shortcuts at 18 pt | Yes | Open `files/keyboard-shortcuts.html` in a browser and print it; the page is set to 18 pt. |
-| Written-out key sequences for common tasks | Yes | Same file, section "Recipes": saving an article, weekly Inbox sorting, tagging, reading a PDF, citing in Word. |
-| Every save lands in an Inbox first | Partly | The browser connector always saves into the collection selected in the Zotero window; a fixed default collection is an open feature request (January 2026). The workable habit: keep **00 Inbox** selected in Zotero, and also check **Unfiled Items** during triage, because items saved while Zotero is closed land there. |
-| Few top-level collections, max 2 levels | Yes | Collections behave like playlists (an item can sit in several). A flat, numbered top level is enough; no subcollections needed. |
-| Short tag list | Yes | Turn off automatic tagging (Settings > General > "Automatically tag items with keywords and subject headings"). Use a small set of colored tags; each one gets a number key (1 to 9) that adds or removes it from selected items. |
-| Where do search strings live? | Yes | Saved searches (left pane, like smart folders; example: Tag is not "read" for everything still unread). Zotero 10 additionally runs advanced searches over any view without saving them. |
-| Zotero browser connector | Yes | Zotero Connector for Safari, Chrome, Firefox, Edge. The Safari connector gained proxy support in Zotero 10. |
-| Automatic, consistent PDF renaming | Yes | Built in since Zotero 7. Settings > General > "Automatically rename attachment files using parent metadata", with a template; the default produces `Author - Year - Title.pdf`. Zotero 8 also keeps filenames in sync when metadata changes. |
-| Backup and synchronization | Yes | Data sync (all metadata, notes, tags) is free with no size limit. Attachment files need Zotero Storage (300 MB free, paid plans) or WebDAV. Zotero also keeps automatic daily database backups, but the intended safety net is sync plus Time Machine. Never place the Zotero data folder inside a cloud-sync folder; that is a documented corruption risk. |
-| iPad workflow | Yes | Zotero for iOS: syncs the library, reads and annotates PDFs, saves from Safari and other apps via the Share button. |
+| High contrast, but NOT dark mode | Yes | Zotero follows the macOS appearance, so keep the Mac in Light mode. Zotero's light theme uses softened grays (main text at 85% black, borders at 15%); the plugin's `style.css` replaces them with solid black and visible borders. macOS "Increase contrast" adds more. |
+| Larger font and comfortable spacing | Yes, automated | The plugin sets `fontSize` to 1.7, above the 1.5 maximum of View > Font Size, and the note font to 24 px. Item rows grow with the font, and the default Comfortable density keeps extra padding. |
+| Only a few columns (author, title, year) | Yes, automated | The plugin hides every column except Title, Creator, and Year, the same as unticking them in the column header menu. |
+| Hide a pane when it is not needed | Yes | View > Layout > Collections Pane / Item Pane / Tag Selector. Zotero has no keyboard shortcut for these toggles. |
+| Printed keyboard shortcuts at 18 pt | Yes | `docs/keyboard-shortcuts.html`, linked from the instructions page; the page prints at 18 pt. |
+| Written-out key sequences for common tasks | Yes | Same page, section "Recipes": saving an article, weekly Inbox sorting (including adding to a collection), tagging, reading a PDF, citing in Word. |
+| Every save lands in an Inbox first | Yes, automated (Mac) | The connector normally saves into whatever is selected in the Zotero window; a fixed default is an open feature request. The plugin makes 00 Inbox the default target for My Library. She can still pick another collection in the connector popup. Items saved while Zotero is closed go to the online library and appear under **Unfiled Items**. On the iPad, she picks 00 Inbox in the Share screen. |
+| Few top-level collections, max 2 levels | Yes | Collections behave like playlists: an item can sit in several. A flat, numbered top level is enough. |
+| Short tag list | Yes | Automatic tagging is turned off. Three colored tags from Zotero's palette: To read (red), Reading (orange), Read (green). Number keys 1, 2, and 3 add or remove them. |
+| Where do search strings live? | Yes | Saved searches in the left pane work like smart folders; the plugin creates "To read". Zotero 10 also runs advanced searches over any view without saving them. |
+| Zotero browser connector | Yes | Safari's connector ships with Zotero and is turned on in Safari's Extensions settings; Chrome, Firefox, and Edge get it from zotero.org/download. |
+| Automatic, consistent PDF renaming | Yes, on by default | Settings > General > "Automatically rename attachment files using parent metadata" is on by default in Zotero 10. The default template produces `Author - Year - Title.pdf`, and filenames follow later metadata edits. |
+| Backup and synchronization | Yes | Data sync (metadata, notes, tags) is free with no size limit. Attachment files need Zotero Storage (300 MB free, paid plans) or WebDAV. Zotero also keeps automatic database backups, but the safety net is sync plus Time Machine. Never place the Zotero data folder inside a cloud-sync folder; that is a documented corruption risk. |
+| iPad workflow | Yes | Zotero for iOS syncs the library, reads and annotates PDFs, and saves from Safari and other apps with the Share button. |
 
-## Two Zotero 9/10 features that matter specifically for tunnel vision
+## Two Zotero 9 and 10 features that help with tunnel vision
 
-- **Reading Mode (Zotero 10):** shows a PDF as one clean column of reflowable text with adjustable font, size, and line spacing. No multi-column page layout to steer through in a 4-degree field.
-- **Read Aloud (Zotero 9, improved in 10):** reads PDFs, EPUBs, and snapshots aloud in natural voices, follows the sentence being read, and can annotate that sentence with one key. Reading position syncs across devices.
+- **Reading Mode (Zotero 10):** shows a PDF as one clean column of reflowable text with adjustable font, size, and line spacing. There is no multi-column page layout to steer through in a 4-degree field. Zotero ships it with a toolbar button only; the plugin adds `Cmd+Shift+M`.
+- **Read Aloud (Zotero 9, improved in 10):** reads PDFs, EPUBs, and snapshots aloud, highlights the sentence being read, and syncs the reading position. `Cmd+Shift+L` (or `Cmd+Shift+R`) starts it; `Space` pauses.
 
-## One-time setup on the iMac
+## Manual setup without the plugin
+
+Use these steps if the plugin can't be installed:
 
 1. Install Zotero 10 and sign in; create the zotero.org account when prompted.
-2. Turn on syncing: Settings > **Account** (this pane was called "Sync" before Zotero 10). Enable data sync; for PDFs, enable file sync (Zotero Storage 300 MB free is fine to start).
-3. macOS: System Settings > Appearance > **Light**; Accessibility > **Increase contrast** on. Zotero stays light.
-4. In Zotero: View > Font Size > Larger two to four times until text is comfortable. Leave density at Comfortable.
+2. Turn on syncing in Settings > **Account**. Enable data sync; for PDFs, enable file sync.
+3. macOS: System Settings > Appearance > **Light**; Accessibility > **Increase contrast** on.
+4. In Zotero: View > Font Size > Bigger until text is comfortable. Leave density at Comfortable.
 5. Columns: right-click the item list header; keep only Title, Creator, Year.
-6. Panes: View > Layout; untick Tag Selector for a cleaner left pane. Show panes again the same way.
-7. Create the collections: `00 Inbox`, `01 Method`, `02 Topic X`, `03 Topic Y` (numbers keep them at the top; keep it flat).
-8. Tags: untick automatic tagging (Settings > General). Create three tags and give them colors (right-click in the tag list > Assign Color): `To read` red position 1, `Reading` yellow position 2, `Read` green position 3. Number keys 1, 2, 3 now apply them.
-9. File renaming: Settings > General > tick "Automatically rename attachment files using parent metadata". The default template is fine (`Author - Year - Title`). Tip: the settings window has a search box; type "rename" to find it.
-10. High-contrast stylesheet: follow the header inside `files/userChrome.css` (copy it into the profile's `chrome` folder, set `toolkit.legacyUserProfileCustomizations.stylesheets` to true in Settings > Advanced > Config Editor, restart Zotero).
-11. Connector: install the Zotero Connector in her browser, and agree to the proxy prompt if the campus uses one.
-12. iPad: install Zotero from the App Store, sign in with the same account.
-
-## The daily loop (what to write down for her)
-
-- **Capture:** keep 00 Inbox selected in Zotero; in the browser, click the Zotero button; the popup shows 00 Inbox; done.
-- **Triage once a week:** open 00 Inbox (and Unfiled Items), decide per item: drag to a topic collection and press 1 (To read), or press Cmd+Delete to trash it.
-- **Read:** double-click an item, zoom with Cmd+plus, try Reading Mode; press Cmd+Shift+L to listen.
-- **Cite:** in Word, Zotero tab > Add/Edit Citation.
-
-All of this is on the printable sheet.
+6. Create the collections `00 Inbox`, `01 Method`, `02 Topic X`, and `03 Topic Y`, and keep them flat.
+7. Tags: untick automatic tagging (Settings > General). Create `To read`, `Reading`, and `Read`, and assign colors in that order (right-click in the tag list > Assign Color).
+8. High-contrast stylesheet: follow the header inside `files/userChrome.css`.
+9. Install the Zotero Connector. Without the plugin, the connector saves to the selected collection, so keep 00 Inbox selected.
 
 ## What is not possible today
 
-1. **Pin the connector's save destination** to one collection. The connector uses whatever collection is selected in the Zotero window (confirmed by the Zotero team in February 2026); a fixed default is an open feature request.
-2. **Keyboard shortcuts for pane toggles.** View > Layout works with the mouse; shortcut requests are still open. For someone who avoids shortcuts, that is fine; but it should be said.
-3. **A built-in high-contrast theme.** Zotero has light and dark only; contrast tuning goes through the stylesheet in this repo. That mechanism is documented, works on Zotero 10, but is not an official extension point, so re-check after major Zotero upgrades.
+1. **Pin the save destination when Zotero is closed or on the iPad.** The plugin can only redirect saves that go through the running Mac app.
+2. **Keyboard shortcuts for pane toggles.** View > Layout works with the mouse; upstream shortcut requests are open.
+3. **A built-in high-contrast theme.** Zotero has light and dark only. The plugin's stylesheet overrides Zotero's CSS variables, which are not a stable interface; re-check the look after major Zotero upgrades.
 
 ## Files
 
-- `plugin/` — the setup plugin (`bootstrap.js`, `accessible-setup.js`, `style.css`, `manifest.json`, `updates.json`) plus the built `.xpi`. Applies prefs once, creates collections, tags, and the saved search, and registers the high-contrast stylesheet. Zotero 10 rejects plugin manifests without `applications.zotero.strict_max_version`, so it is set.
-- `files/userChrome.css` — the same high-contrast overrides as a manual profile stylesheet; an alternative to the plugin. Install steps in the file header.
-- `files/keyboard-shortcuts.html` — printable 18 pt cheat sheet: keys plus the five most common task sequences.
-- `docs/` — the instructions webpage served by GitHub Pages from `docs/` (includes a copy of the cheat sheet).
+- `plugin/`: the setup plugin (`bootstrap.js`, `accessible-setup.js`, `style.css`, `manifest.json`, `updates.json`) and `build.sh`.
+- `files/userChrome.css`: the high-contrast overrides and row tint as a manual profile stylesheet, for setups without the plugin.
+- `docs/`: the instructions page and the printable cheat sheet, served by GitHub Pages.
+
+## Releasing a new version
+
+1. Bump `version` in `plugin/manifest.json`, and add the same version to `plugin/updates.json` with `update_link` `https://github.com/utsmok/zotero-accessible/releases/download/vX.Y.Z/zotero-accessible-setup.xpi`.
+2. If the release adds setup steps, bump `SETUP_LEVEL` in `accessible-setup.js` and add an `if (level < N)` block.
+3. Run `plugin/build.sh`, which writes `dist/zotero-accessible-setup.xpi`.
+4. Run `gh release create vX.Y.Z dist/zotero-accessible-setup.xpi`, then push `main`. Installed copies pick up the update from `updates.json` on `main`.
+
+Zotero rejects plugin manifests without `applications.zotero.update_url` and `strict_max_version`. The manifest allows Zotero 7 to 10; bump `strict_max_version` when Zotero 11 ships.
+
+## Implementation notes
+
+The plugin uses a few Zotero internals, so re-test it after major Zotero updates:
+
+- The Inbox default wraps `Zotero.Server.Connector.getSaveTarget`; the original is restored when the plugin is disabled.
+- Columns are set through `ZoteroPane.itemsView.tree._columns.toggleHidden`, the same call the column menu uses.
+- The Reading Mode shortcut calls `reader._internalReader._handleReadingModeEnabledChange`, the toolbar button's handler, for the split view last used. `Cmd+Shift+R` and `Cmd+Shift+L` are taken by Read Aloud in Zotero 10, so the plugin uses `M`.
+- The row tint is a generated `<style>` with one rule per tag color, rebuilt when tag colors change. It skips selected rows, so Zotero's blue selection and white text stay intact, and it uses `!important` to beat Zotero's striped-row rule. Tag colors come from Zotero's palette; other colors show as black dots in the tag list.
 
 ## Testing
 
-Verified on a live headless Zotero 10 (Linux build, November 2026) with screenshots:
+Plugin 1.1.0 was tested on a live headless Zotero 10.0.8 (Linux build) in a fresh profile, with screenshots and state read through the remote debugger:
 
-- `fontSize` set to 1.7 enlarged all UI text, and item list rows grew with it (comfortable density). 1.7 exceeds the 1.5 maximum of the View menu slider; Zotero accepts it and the slider then shows the value as maxed out.
-- A `userChrome.css` with a diagnostic background and the variable overrides from this repo loaded and applied with `toolkit.legacyUserProfileCustomizations.stylesheets = true`.
-- Test items were injected through the local API to confirm real rows, title truncation, and the colored tag appearing in the tag selector.
-- The plugin in `plugin/` was installed through Zotero's remote-debugging addon API (the same manifest validation as a manual install) and produced: the four collections, the "To read" saved search, the three colored tags, `fontSize` 1.7, `automaticTags` false, and the high-contrast stylesheet, confirmed via the local API, the debug log, screenshots, and the persisted `prefs.js` after quit. Zotero's manifest validation rejects plugins without `applications.zotero.strict_max_version`; the built manifest sets it.
-- Plugin 1.0.1 additions, verified in the same live instance: the whole item row is tinted with the item's colored status tag (`:has()` on the tag swatch's `data-color`, a 20% `color-mix` into white, so black text keeps full contrast and Zotero's selection styles keep priority); and `Ctrl/Cmd+Shift+R` toggles the Zotero 10 PDF Reading Mode from both the library view and inside the reader (Zotero ships Reading Mode with a toolbar button only; the plugin calls `reader._internalReader._handleReadingModeEnabledChange(!internal._state.primaryReadingModeEnabled)`). Toggling on and off was verified with screenshots of both toolbars.
+- Installed through `AddonManager.getInstallForFile`, the same path as Install Plugin From File. Collections, saved search, tags, columns, font sizes, and `automaticTags` were all applied.
+- A real `POST /connector/saveItems` while another view was selected landed in 00 Inbox. Disabling the plugin restored the original target; enabling it brought the Inbox back.
+- Tagged rows were tinted red, orange, and green with black text. The selected tagged row kept Zotero's blue highlight with white text. Tag list dots showed the tag colors.
+- `Ctrl+Shift+M` in an open PDF switched Reading Mode on and off.
+- Upgrade from 1.0.1 (simulated state): the old tag colors moved to the palette, and the column and note-font steps ran. The same steps also ran during app startup after a restart.
+- The plugin and its stylesheet loaded again after a full restart.
+
+Not tested here: the macOS build, the Safari and Chrome connectors themselves, sync, the iPad app, and the `updates.json` auto-update flow.
 
 ## Sources
 
@@ -98,7 +118,6 @@ Verified on a live headless Zotero 10 (Linux build, November 2026) with screensh
 - Zotero for iOS: https://www.zotero.org/support/ios
 - Keyboard shortcuts: https://www.zotero.org/support/kb/keyboard_shortcuts
 - Profile directory (where `userChrome.css` goes): https://www.zotero.org/support/kb/profile_directory
-- Zotero 10 changelog (Reading Mode, advanced search, Account pane, Safari connector, Read Aloud shortcut): https://www.zotero.org/support/10.0_changelog
+- Zotero 10 changelog (Reading Mode, Read Aloud shortcut `Cmd/Ctrl-Shift-L/R`, advanced search, Account pane, Safari connector): https://www.zotero.org/support/10.0_changelog
 - Zotero 9 announcement (Read Aloud, Recently Read): https://www.zotero.org/blog/zotero-9/
 - Pane toggles in View > Layout: https://forums.zotero.org/discussion/124064/
-- Row height computed from font size and density (source): `chrome/content/zotero/components/virtualized-table.jsx` in https://github.com/zotero/zotero

@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 	"name": "Zotero Accessible Setup",
-	"version": "1.0.1",
-	"description": "One-step accessible setup: larger text, high contrast, Inbox collections, status tags.",
+	"version": "1.1.0",
+	"description": "One-step accessible setup: larger text, high contrast, three columns, Inbox collection for every save, status tags.",
 	"author": "github.com/utsmok",
 	"homepage_url": "https://github.com/utsmok/zotero-accessible",
 	"applications": {
