@@ -1,0 +1,15 @@
+{
+	"manifest_version": 2,
+	"name": "Zotero Accessible Setup",
+	"version": "1.0.0",
+	"description": "One-step accessible setup: larger text, high contrast, Inbox collections, status tags.",
+	"author": "github.com/utsmok",
+	"homepage_url": "https://github.com/utsmok/zotero-accessible",
+	"applications": {
+		"zotero": {
+			"id": "accessible-setup@utsmok",
+			"update_url": "https://raw.githubusercontent.com/utsmok/zotero-accessible/main/plugin/updates.json",
+			"strict_min_version": "7.0"
+		}
+	}
+}

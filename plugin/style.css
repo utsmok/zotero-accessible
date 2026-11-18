@@ -1,0 +1,17 @@
+/*
+ * Zotero Accessible Setup: high-contrast adjustments for the light theme.
+ *
+ * Zotero's light theme uses softened grays (main text at 85% black,
+ * borders at 15% black). These rules make text solid black and borders
+ * clearly visible. Layout, sizes, and fonts are not touched; text size
+ * comes from View > Font Size, set by this plugin on first run.
+ */
+:root {
+	--fill-primary: #000 !important;
+	--fill-secondary: #1a1a1a !important;
+	--fill-tertiary: #404040 !important;
+	--fill-quarternary: rgba(0, 0, 0, 0.35) !important;
+	--color-border: rgba(0, 0, 0, 0.55) !important;
+	--color-border50: rgba(0, 0, 0, 0.3) !important;
+	--color-panedivider: #555 !important;
+}
